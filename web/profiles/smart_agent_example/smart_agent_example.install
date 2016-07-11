@@ -1,0 +1,48 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the Ifat install profile.
+ */
+
+use Drupal\user\Entity\User;
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ *
+ * @see system_install()
+ */
+function smart_agent_example_install() {
+  // Set front page to "node".
+  \Drupal::configFactory()->getEditable('system.site')->set('page.front', '/news-items')->save(TRUE);
+
+  // Allow visitor account creation with administrative approval.
+  $user_settings = \Drupal::configFactory()->getEditable('user.settings');
+  $user_settings->set('register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)->save(TRUE);
+
+
+  // Assign user 1 the "administrator" role.
+  $user = User::load(1);
+  $user->roles[] = 'administrator';
+  $user->save();
+
+
+  // Allow authenticated users to use shortcuts.
+  $perms = [
+    'access shortcuts',
+    'access toolbar',
+    'view the administration theme',
+
+    'access content overview',
+    'create smart_agent content',
+    'edit own smart_agent content',
+  ];
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+
+  // Enable the admin theme.
+  \Drupal::configFactory()->getEditable('node.settings')->set('use_admin_theme', TRUE)->save(TRUE);
+//  \Drupal::configFactory()->getEditable('system.theme')->set('default', 'sma_theme')->save(TRUE);
+}

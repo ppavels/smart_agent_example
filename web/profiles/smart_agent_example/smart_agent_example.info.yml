@@ -1,0 +1,50 @@
+name: Smart agent example
+type: profile
+description: 'An example implementation of "Smart agent" functionality in Drupal 8.'
+core: 8.x
+
+# Optional: Declare your installation profile as a distribution
+# This will make the installer auto-select this installation profile.
+# The distribution_name property is used in the installer and other places as
+# a label for the software being installed.
+distribution:
+  name: smart_agent_example
+
+# Required modules
+dependencies:
+  - node
+  - block
+  - block_content
+  - breakpoint
+  - config
+  - contextual
+  - quickedit
+  - image
+  - options
+  - path
+  - taxonomy
+  - dblog
+  - shortcut
+  - toolbar
+  - file
+  - views
+  - editor
+  - ckeditor
+  - search
+  - help
+
+  # Cusotm
+
+  # Devel
+  - devel
+  - kint
+  - field_ui
+  - features_ui
+  - views_ui
+
+themes:
+  - bartik
+  - seven
+
+  # Custom
+  # - sma_theme
