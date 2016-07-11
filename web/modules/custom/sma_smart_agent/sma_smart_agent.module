@@ -24,5 +24,46 @@ function sma_smart_agent_node_presave(\Drupal\Core\Entity\EntityInterface $node)
   if (!$node->getOwnerId() && !$node->get('field_email')->getValue()) {
     throw new \Drupal\Core\Entity\EntityMalformedException('Email field cannot be empty if owner is anonymous.');
   }
+}
 
+/**
+ * Implements hook_user_insert().
+ */
+function sma_smart_agent_user_insert(Drupal\user\Entity\User $user) {
+  sma_smart_agent_associate_node_to_user($user);
+}
+
+
+/**
+ * Associate existing smart agent nodes to a user by their email.
+ *
+ * We do the association by trying to match the smart agent's email field,
+ * along with the user's. We do this check only for smart agents owned by
+ * anonymous users.
+ *
+ * @param \Drupal\Core\Session\AccountProxy $user
+ *   The user object.
+ */
+function sma_smart_agent_associate_node_to_user(Drupal\user\Entity\User $user) {
+  $entity_type = \Drupal::entityTypeManager()->getDefinition('node');
+  $result = \Drupal::entityQuery('node')
+    ->condition($entity_type->getKey('bundle'), 'smart_agent')
+    ->condition('field_email', $user->getEmail())
+    ->condition('uid', 0)
+    ->execute();
+
+  if (!$result) {
+    // No smart agents found.
+    return;
+  }
+
+  /** @var \Drupal\node\NodeInterface $node */
+  foreach (node_load_multiple(array_keys($result)) as $node) {
+    // Unset the email field.
+    $node->get('field_email')->setValue(NULL);
+
+    // Set the owner of the node.
+    $node->setOwnerId($user->id());
+    $node->save();
+  }
 }
