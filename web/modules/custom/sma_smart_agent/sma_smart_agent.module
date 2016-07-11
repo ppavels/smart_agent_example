@@ -41,7 +41,7 @@ function sma_smart_agent_user_insert(Drupal\user\Entity\User $user) {
  * along with the user's. We do this check only for smart agents owned by
  * anonymous users.
  *
- * @param \Drupal\Core\Session\AccountProxy $user
+ * @param \Drupal\user\Entity\User $user
  *   The user object.
  */
 function sma_smart_agent_associate_node_to_user(Drupal\user\Entity\User $user) {
