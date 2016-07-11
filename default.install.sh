@@ -37,5 +37,18 @@ echo "\$databases['migrate']['default'] = \$databases['default']['default'];" >>
 
 #$DRUSH mi --all
 
+echo "Build assets"
+cd static
+npm install
+bundler install
+
+gulp build
+
+cd ..
+
+cp -R ./static/serve/assets ./web/themes/sma_theme/vendors
+
+
+
 # Login
 $DRUSH uli --uri=${BASE_DOMAIN_URL}
