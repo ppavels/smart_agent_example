@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Smart agent functionality.
+ */
+use Drupal\Component\Utility\Crypt;
+
+
+/**
+ * Implements hook_node_presave().
+ */
+function sma_smart_agent_node_presave(\Drupal\Core\Entity\EntityInterface $node) {
+  if ($node->bundle() != 'smart_agent') {
+    // Not a smart agent ndoe type.
+    return;
+  }
+
+  if (!$node->get('field_unique_token')->getValue()) {
+    // Set unique token.
+    $node->get('field_unique_token')->setValue(Crypt::randomBytesBase64());
+  }
+
+}
