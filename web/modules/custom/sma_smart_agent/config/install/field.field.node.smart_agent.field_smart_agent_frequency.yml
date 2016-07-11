@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_smart_agent_frequency
+    - node.type.smart_agent
+  module:
+    - options
+id: node.smart_agent.field_smart_agent_frequency
+field_name: field_smart_agent_frequency
+entity_type: node
+bundle: smart_agent
+label: Frequency
+description: 'Determine the frequency for which the smart agents should be sent. If none selected, no notifications will be sent.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

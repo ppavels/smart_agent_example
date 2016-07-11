@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.smart_agent.field_smart_agent_frequency
+    - node.type.smart_agent
+  module:
+    - options
+    - user
+id: node.smart_agent.default
+targetEntityType: node
+bundle: smart_agent
+mode: default
+content:
+  field_smart_agent_frequency:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  links:
+    weight: 100
+hidden: {  }

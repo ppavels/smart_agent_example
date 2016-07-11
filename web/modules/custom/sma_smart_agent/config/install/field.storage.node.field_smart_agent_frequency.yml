@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_smart_agent_frequency
+field_name: field_smart_agent_frequency
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: immediate
+      label: Immediate
+    -
+      value: daily
+      label: Daily
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

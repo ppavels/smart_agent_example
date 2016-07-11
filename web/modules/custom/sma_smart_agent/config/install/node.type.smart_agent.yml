@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Smart agent'
+type: smart_agent
+description: ''
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: true

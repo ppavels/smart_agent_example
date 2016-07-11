@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.smart_agent
+  module:
+    - user
+id: node.smart_agent.teaser
+targetEntityType: node
+bundle: smart_agent
+mode: teaser
+content:
+  links:
+    weight: 100
+hidden: {  }
