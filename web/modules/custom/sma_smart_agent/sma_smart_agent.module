@@ -21,4 +21,8 @@ function sma_smart_agent_node_presave(\Drupal\Core\Entity\EntityInterface $node)
     $node->get('field_unique_token')->setValue(Crypt::randomBytesBase64());
   }
 
+  if (!$node->getOwnerId() && !$node->get('field_email')->getValue()) {
+    throw new \Drupal\Core\Entity\EntityMalformedException('Email field cannot be empty if owner is anonymous.');
+  }
+
 }
