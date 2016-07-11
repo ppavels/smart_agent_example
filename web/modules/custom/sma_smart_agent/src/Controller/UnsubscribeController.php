@@ -3,6 +3,7 @@
 namespace Drupal\sma_smart_agent\Controller;
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Routing\UrlGeneratorTrait;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\node\NodeInterface;
@@ -11,11 +12,15 @@ use Symfony\Component\Routing\Route;
 class UnsubscribeController {
 
   use StringTranslationTrait;
+  use UrlGeneratorTrait;
 
   public function execute(NodeInterface $node, $token) {
     $node->setPublished(FALSE);
     $node->save();
-    return drupal_set_message($this->t(sprintf('Unsubscribed from %s smart agent', $node->getTitle())));
+    drupal_set_message($this->t(sprintf('Unsubscribed from %s smart agent', $node->getTitle())));
+
+    // Redirect to the homepage.
+    return $this->redirect('page.front');
   }
 
 
