@@ -1,0 +1,6 @@
+smart_agent.unsubscribe:
+  path: '/smart-agent-unsubscribe/{node}/{token}'
+  defaults:
+    _controller: '\Drupal\sma_smart_agent\Controller\UnsubscribeController::execute'
+  requirements:
+    _custom_access: '\Drupal\sma_smart_agent\Controller\UnsubscribeController::access'
