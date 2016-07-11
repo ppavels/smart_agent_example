@@ -13,6 +13,7 @@ distribution:
 # Required modules
 dependencies:
   - node
+  - comment
   - block
   - block_content
   - breakpoint
