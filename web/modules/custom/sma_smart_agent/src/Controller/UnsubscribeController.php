@@ -20,7 +20,7 @@ class UnsubscribeController {
     drupal_set_message($this->t(sprintf('Unsubscribed from %s smart agent', $node->getTitle())));
 
     // Redirect to the homepage.
-    return $this->redirect('page.front');
+    return $this->redirect('<front>');
   }
 
 
