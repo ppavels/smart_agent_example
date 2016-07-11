@@ -32,10 +32,7 @@ class UnsubscribeController {
    * @param \Drupal\Core\Session\AccountInterface $account
    *   The currently logged in account.
    * @param \Drupal\node\NodeInterface $node
-   *   (optional) A node object. Used for checking access to a node's default
-   *   revision when $node_revision is unspecified. Ignored when $node_revision
-   *   is specified. If neither $node_revision nor $node are specified, then
-   *   access is denied.
+   *   THe node object.
    * @param string $token
    *   The unique token of the smart agent.
    *
@@ -43,6 +40,6 @@ class UnsubscribeController {
    *   The access result.
    */
   public function access(Route $route, AccountInterface $account, NodeInterface $node, $token) {
-    return AccessResult::allowedIf($node->get('field_unique_token')->value == $token);
+    return AccessResult::allowedIf($node->bundle() == 'smart_agent' && $node->get('field_unique_token')->value == $token);
   }
 }
