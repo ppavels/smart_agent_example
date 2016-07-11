@@ -4,6 +4,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.smart_agent.field_smart_agent_frequency
+    - field.field.node.smart_agent.field_tags
     - node.type.smart_agent
   module:
     - user
@@ -16,3 +17,4 @@ content:
     weight: 100
 hidden:
   field_smart_agent_frequency: true
+  field_tags: true

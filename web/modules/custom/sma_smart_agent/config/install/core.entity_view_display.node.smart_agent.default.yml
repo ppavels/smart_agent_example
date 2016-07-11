@@ -2,8 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.smart_agent.field_email
     - field.field.node.smart_agent.field_smart_agent_frequency
     - field.field.node.smart_agent.field_tags
+    - field.field.node.smart_agent.field_unique_token
     - node.type.smart_agent
   module:
     - options
@@ -13,6 +15,12 @@ targetEntityType: node
 bundle: smart_agent
 mode: default
 content:
+  field_email:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
   field_smart_agent_frequency:
     weight: 101
     label: above
@@ -26,6 +34,13 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+  field_unique_token:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
   links:
     weight: 100
 hidden: {  }
