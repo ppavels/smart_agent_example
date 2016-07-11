@@ -2,11 +2,20 @@
 
 namespace Drupal\sma_smart_agent\Controller;
 
-class UnsubscribeController extends ControllerBase implements ContainerInjectionInterface {
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\node\NodeInterface;
+use Symfony\Component\Routing\Route;
 
+class UnsubscribeController {
 
-  public function execute($node, $token) {
+  use StringTranslationTrait;
 
+  public function execute(NodeInterface $node, $token) {
+    $node->setPublished(FALSE);
+    $node->save();
+    return drupal_set_message($this->t(sprintf('Unsubscribed from %s smart agent', $node->getTitle())));
   }
 
 
@@ -30,6 +39,6 @@ class UnsubscribeController extends ControllerBase implements ContainerInjection
    *   The access result.
    */
   public function access(Route $route, AccountInterface $account, NodeInterface $node, $token) {
-    return AccessResult::allowedIf($node->get('field_unique_token')->getValue() == $token);
+    return AccessResult::allowedIf($node->get('field_unique_token')->value == $token);
   }
 }
