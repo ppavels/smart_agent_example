@@ -12,7 +12,7 @@ use Drupal\Component\Utility\Crypt;
  */
 function sma_smart_agent_node_presave(\Drupal\Core\Entity\EntityInterface $node) {
   if ($node->bundle() != 'smart_agent') {
-    // Not a smart agent ndoe type.
+    // Not a smart agent node type.
     return;
   }
 
