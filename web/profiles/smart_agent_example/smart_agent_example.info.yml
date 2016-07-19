@@ -34,6 +34,10 @@ dependencies:
   - search
   - help
 
+  # Contrib
+  - page_manager_ui
+  - panels
+
   # Cusotm
   - sma_smart_agent
 
@@ -42,6 +46,7 @@ dependencies:
   - kint
   - field_ui
   - features_ui
+  - page_manager_ui
   - views_ui
 
 themes:
